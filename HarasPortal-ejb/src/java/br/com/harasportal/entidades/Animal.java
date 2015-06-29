@@ -23,7 +23,8 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "animal.findAll", query = "SELECT a FROM Animal a")
+    @NamedQuery(name = "animal.findAll", query = "SELECT a FROM Animal a"),
+    @NamedQuery(name = "animal.findById", query = "SELECT a FROM Animal a WHERE a.id =?1")
 })
 public class Animal implements Serializable {
     private static final long serialVersionUID = 1L;
