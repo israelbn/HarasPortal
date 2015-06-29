@@ -30,6 +30,10 @@ public class AnimalMB {
      */
     public AnimalMB() {
     }
+    
+    public void findByAll(){
+        listaAnimais = animalDAO.findByAll();
+    }
 
     // get e set
     public Animal getAnimal() {
