@@ -7,6 +7,7 @@ package br.com.harasportal.mb;
 
 import br.com.harasportal.ejb.AnimalDAO;
 import br.com.harasportal.entidades.Animal;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -22,6 +23,7 @@ public class AnimalMB {
     @EJB
     private AnimalDAO animalDAO;
     private Animal animal;
+    private List<Animal> listaAnimais;
 
     /**
      * Creates a new instance of AnimalMB
@@ -36,6 +38,14 @@ public class AnimalMB {
 
     public void setAnimal(Animal animal) {
         this.animal = animal;
+    }
+
+    public List<Animal> getListaAnimais() {
+        return listaAnimais;
+    }
+
+    public void setListaAnimais(List<Animal> listaAnimais) {
+        this.listaAnimais = listaAnimais;
     }
     
 }
