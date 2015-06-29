@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -20,6 +22,9 @@ import javax.persistence.TemporalType;
  * @author Israel
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "animal.findAll", query = "SELECT a FROM Animal a")
+})
 public class Animal implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -110,7 +115,7 @@ public class Animal implements Serializable {
 
     @Override
     public String toString() {
-        return "br.ufac.entidades.Animal[ id=" + id + " ]";
+        return "br.ufac.entidades.Animal[ id=" + id + ", nome=" + nome + ", registro=" + numero_registro + " ]";
     }
     
 }
