@@ -6,10 +6,13 @@
 package br.com.harasportal.entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -22,6 +25,23 @@ public class Filiacao implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String pai, mae;
+    @OneToMany(mappedBy = "filiacao")
+    private List<Animal> animais;
+    
+    public void addAnimal(Animal animal){
+        if(animais == null)
+            animais = new ArrayList<>();
+        animais.add(animal);
+        animal.setFiliacao(this);
+    }
+
+    public List<Animal> getAnimais() {
+        return animais;
+    }
+
+    public void setAnimais(List<Animal> animais) {
+        this.animais = animais;
+    }
 
     public String getPai() {
         return pai;

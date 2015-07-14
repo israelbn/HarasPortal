@@ -5,8 +5,10 @@
  */
 package br.com.harasportal.entidades;
 
+import br.com.harasportal.enumeration.Classificacao;
 import java.io.Serializable;
 import java.util.Calendar;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,12 +27,38 @@ public class Animal implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String nome, numero_registro, pelagem;
+    private String nome, numero_registro, pelagem, premiacoes;
     private char sexo;
     @Temporal(TemporalType.DATE)
     private Calendar data_nascimento = Calendar.getInstance();
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Filiacao filiacao;
+    private Classificacao classificacao;
+    private char ativo;
+
+    public char getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(char ativo) {
+        this.ativo = ativo;
+    }
+
+    public Classificacao getClassificacao() {
+        return classificacao;
+    }
+
+    public void setClassificacao(Classificacao classificacao) {
+        this.classificacao = classificacao;
+    }
+
+    public String getPremiacoes() {
+        return premiacoes;
+    }
+
+    public void setPremiacoes(String premiacoes) {
+        this.premiacoes = premiacoes;
+    }
 
     public String getNome() {
         return nome;

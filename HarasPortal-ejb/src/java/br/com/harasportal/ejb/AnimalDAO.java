@@ -24,7 +24,7 @@ public class AnimalDAO {
     private EntityManager em;
 
     public void persist(Object object) {
-        em.persist(object);
+        em.merge(object);
     }
     
     public List<Animal> findByAll(){
