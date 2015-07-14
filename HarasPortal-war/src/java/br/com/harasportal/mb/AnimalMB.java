@@ -60,8 +60,18 @@ public class AnimalMB {
     public void salvar(){
         animalDAO.persist(animal);
         
-        findByAll();
+        if(tela == StatusTela.inserindo)
+            findByAll();
         tela = StatusTela.listando;
+    }
+    
+    public void editar(){
+        tela = StatusTela.editando;
+    }
+    
+    public void remover(){
+        tela = StatusTela.deletando;
+        animal.setAtivo('n');
     }
     
     public void voltarLista(){

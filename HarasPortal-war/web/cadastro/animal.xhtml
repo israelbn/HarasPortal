@@ -10,7 +10,6 @@
         <h:form rendered="#{animalMB.tela eq 'listando'}">
             <h:commandButton value="Cadastrar" action="#{animalMB.novo()}" class="btn btn-primary"/>
             <span/>
-            <h:commandButton value="Pesquisar" actionListener="#{animalMB.findByAll()}" class="btn btn-primary"/>
 
             <h:dataTable value="#{animalMB.listaAnimais}" var="animal" class="table table-hover">
                 <h:column>
@@ -32,55 +31,77 @@
                     #{animal.pelagem}
                 </h:column>
                 <h:column>
-                    <h:commandLink value="Editar"/>
-                    <h:commandLink value="Remover"/>
+                    <f:facet name="header">
+                        Ativo?
+                    </f:facet>
+                    #{animal.ativo}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Ações
+                    </f:facet>
+                    <h:commandLink value="Editar" action="#{animalMB.editar()}">
+                        <f:setPropertyActionListener target="#{animalMB.animal}" value="#{animal}"/>
+                    </h:commandLink>
+                    ||
+                    <h:commandLink value="Remover" action="#{animalMB.remover()}" rendered="#{animal.ativo eq 's'}">
+                        <f:setPropertyActionListener target="#{animalMB.animal}" value="#{animal}"/>
+                    </h:commandLink>
                 </h:column>
             </h:dataTable>
         </h:form>
         <h:form rendered="#{animalMB.tela != 'listando'}">
+            <h:panelGrid columns="1" rendered="#{animalMB.tela eq 'editando'}">
+                <h:outputLabel value="Ativo:"/>
+                <h:selectOneRadio value="#{animalMB.animal.ativo}" >
+                    <f:selectItem itemValue="s" itemLabel="Sim"/>
+                    <f:selectItem itemValue="n" itemLabel="Não"/>
+                </h:selectOneRadio>
+            </h:panelGrid>
             <h:panelGrid columns="1">
                 <h:outputLabel value="Número do registro:"/>
-                <h:inputText value="#{animalMB.animal.numero_registro}" styleClass="form-control"/>
+                <h:inputText value="#{animalMB.animal.numero_registro}" styleClass="form-control" disabled="#{animalMB.tela eq 'deletando'}"/>
             </h:panelGrid>
             <div class="form-group">
                 <h:outputLabel value="Nome:"/>
-                <h:inputText value="#{animalMB.animal.nome}" styleClass="form-control"/>
+                <h:inputText value="#{animalMB.animal.nome}" styleClass="form-control" disabled="#{animalMB.tela eq 'deletando'}" />
             </div>
             <div class="form-group">
                 <h:outputLabel value="Pelagem:"/>
-                <h:inputText value="#{animalMB.animal.pelagem}" styleClass="form-control"/>
+                <h:inputText value="#{animalMB.animal.pelagem}" styleClass="form-control" disabled="#{animalMB.tela eq 'deletando'}" />
             </div>
             <div class="form-group">
                 <h:outputLabel value="Sexo:"/>
-                <h:selectOneRadio value="#{animalMB.animal.sexo}">
+                <h:selectOneRadio value="#{animalMB.animal.sexo}" disabled="#{animalMB.tela eq 'deletando'}" >
                     <f:selectItem itemValue="m" itemLabel="Macho"/>
                     <f:selectItem itemValue="f" itemLabel="Femea"/>
                 </h:selectOneRadio>
             </div>
             <h:panelGrid columns="1">
                 <h:outputLabel value="Data de nascimento:"/>
-                <h:inputText value="#{animalMB.animal.data_nascimento.time}" styleClass="form-control">
+                <h:inputText value="#{animalMB.animal.data_nascimento.time}" styleClass="form-control" disabled="#{animalMB.tela eq 'deletando'}" >
                     <f:convertDateTime pattern="dd/MM/yyyy" />
                 </h:inputText>
             </h:panelGrid>
             <div class="form-group">
                 <h:outputLabel value="Filiação:"/><br/>
                 Nome do pai:
-                <h:inputText value="#{animalMB.animal.filiacao.pai}" styleClass="form-control"/>
+                <h:inputText value="#{animalMB.animal.filiacao.pai}" styleClass="form-control" disabled="#{animalMB.tela eq 'deletando'}" />
                 Nome da mãe:
-                <h:inputText value="#{animalMB.animal.filiacao.mae}" styleClass="form-control"/>
+                <h:inputText value="#{animalMB.animal.filiacao.mae}" styleClass="form-control" disabled="#{animalMB.tela eq 'deletando'}" />
             </div>
             <div class="form-group">
                 <h:outputLabel value="Premiações:"/>
-                <h:inputTextarea value="#{animalMB.animal.premiacoes}" styleClass="form-control"></h:inputTextarea>
+                <h:inputTextarea value="#{animalMB.animal.premiacoes}" styleClass="form-control" disabled="#{animalMB.tela eq 'deletando'}" ></h:inputTextarea>
             </div>
             <div class="form-group">
                 <h:outputLabel value="Classificação:"/>
-                <h:selectOneMenu value="#{animalMB.animal.classificacao}" styleClass="form-control">
+                <h:selectOneMenu value="#{animalMB.animal.classificacao}" styleClass="form-control" disabled="#{animalMB.tela eq 'deletando'}" >
                     <f:selectItems value="#{animalMB.classificacoes}" var="c" itemLabel="#{c}" itemValue="#{c}"/>
                 </h:selectOneMenu>
             </div>
-            <h:commandButton value="Salvar" action="#{animalMB.salvar()}" class="btn btn-primary"/><span/>
+            <h:commandButton value="Salvar" action="#{animalMB.salvar()}" class="btn btn-primary" rendered="#{animalMB.tela != 'deletando'}"/><span/>
+            <h:commandButton value="Desativar" action="#{animalMB.salvar()}" class="btn btn-primary" rendered="#{animalMB.tela eq 'deletando'}"/><span/>
             <h:commandButton value="Cancelar" action="#{animalMB.voltarLista()}" class="btn btn-default"/>
         </h:form>
     </ui:define>
