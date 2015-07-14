@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.harasportal.ejb;
 
 import br.com.harasportal.entidades.Animal;
@@ -40,6 +35,9 @@ public class AnimalDAO {
             return null;
         }
     }
-
+    
+    public Animal findById(Long id){
+        return em.find(Animal.class, id);
+    }
     
 }

@@ -14,6 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -138,7 +140,7 @@ public class Animal implements Serializable {
 
     @Override
     public String toString() {
-        return "br.ufac.entidades.Animal[ id=" + id + " ]";
+        return "br.ufac.entidades.Animal[ id=" + id + ", nome=" + nome + ", registro=" + numero_registro + " ]";
     }
     
 }
