@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 /**
@@ -38,6 +39,23 @@ public class AnimalDAO {
     
     public Animal findById(Long id){
         return em.find(Animal.class, id);
+    }
+    
+    public List<Animal> listaAnimaisAVenda(){
+        try {
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<Animal> cq = cb.createQuery(Animal.class);
+            Root<Animal> root = cq.from(Animal.class);
+            cq.select(root);
+            
+            Predicate predicate = cb.equal(root.get("ativo"), 's');
+            cq.where(predicate);
+            
+            return em.createQuery(cq).getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
     
 }

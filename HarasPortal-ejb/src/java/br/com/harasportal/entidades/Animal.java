@@ -30,6 +30,15 @@ public class Animal implements Serializable {
     private Filiacao filiacao;
     private Classificacao classificacao;
     private char ativo;
+    private Double preco;
+
+    public Double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(Double preco) {
+        this.preco = preco;
+    }
 
     public char getAtivo() {
         return ativo;
