@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../template/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <h:messages/>
+        <div class="panel-heading">Contato</div><br/>
+        <h:form rendered="#{contatoMB.tela eq 'listando'}">
+            <h:commandButton action="#{contatoMB.novo()}" class="btn btn-primary" value="Novo"/>
+            <span/>
+            <h:dataTable value="#{contatoMB.listaContatos}" var="mensagem" class="table table-hover">
+                <h:column>
+                    <f:facet name="header">
+                        Nome
+                    </f:facet>
+                    #{mensagem.nome}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        E-mail
+                    </f:facet>
+                    #{mensagem.email}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Mensagem
+                    </f:facet>
+                    #{mensagem.mensagem}
+                </h:column>
+            </h:dataTable>
+        </h:form>
+        <h:form rendered="#{contatoMB.tela != 'listando'}">
+            <h:panelGrid columns="2">
+                <h:outputText value="Nome"/>
+                <h:inputText value="#{contatoMB.contato.nome}" label="Nome"
+                             styleClass="form-control"/>
+                <h:outputText value="E-mail"/>
+                <h:inputText value="#{contatoMB.contato.email}" label="E-mail"
+                             styleClass="form-control"/>
+                <h:outputText value="Assunto"/>
+                <h:inputText value="#{contatoMB.contato.assunto}" label="Assutno"
+                             styleClass="form-control"/>
+                <h:outputText value="Mensagem"/>
+                <h:inputTextarea value="#{contatoMB.contato.mensagem}" label="Mensagem"
+                                 styleClass="form-control" validator="#{contatoMB.messageValidator}"/>
+            </h:panelGrid>
+            <h:commandButton value="Enviar" action="#{contatoMB.salvar()}" class="btn btn-primary"/>
+            <h:commandButton value="Cancelar" action="/index.xhtml?faces-redirect=true" class="btn btn-primary"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
