@@ -17,7 +17,7 @@ public class ContatoDAO{
     private EntityManager em;
 
     public void persist(Object object) {
-        em.persist(object);
+        em.merge(object);
     }
     
     public List<Contato> findByAll(){

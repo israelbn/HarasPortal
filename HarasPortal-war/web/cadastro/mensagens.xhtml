@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../template/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <h:messages/>
+        <div class="panel-heading">Mensagens</div><br/>
+        <h:form rendered="#{contatoMB.tela != 'detalhar'}">
+            <span/>
+            <h:dataTable value="#{contatoMB.listaContatos}" var="mensagem" class="table table-hover">
+                <h:column>
+                    <f:facet name="header">
+                        Nome
+                    </f:facet>
+                    #{mensagem.nome}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        E-mail
+                    </f:facet>
+                    #{mensagem.email}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Assunto
+                    </f:facet>
+                    #{mensagem.assunto}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Mensagem
+                    </f:facet>
+                    #{mensagem.mensagem.substring(0,25).concat("...")}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Ações
+                    </f:facet>
+                    <h:commandLink value="Detalhar" action="#{contatoMB.detalhar()}">
+                        <f:setPropertyActionListener target="#{contatoMB.contato}" value="#{mensagem}"/>
+                    </h:commandLink>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+        
+        <h:form rendered="#{contatoMB.tela eq 'detalhar'}">
+            <h:panelGrid columns="1">
+                <h:outputText value="Nome"/>
+                <h:outputText value="#{contatoMB.contato.nome}"
+                             styleClass="form-control"/>
+                <h:outputText value="E-mail"/>
+                <h:outputText value="#{contatoMB.contato.email}"
+                             styleClass="form-control"/>
+                <h:outputText value="Assunto"/>
+                <h:outputText value="#{contatoMB.contato.assunto}"
+                             styleClass="form-control"/>
+                <h:outputText value="Mensagem"/>
+                #{contatoMB.contato.mensagem}
+            </h:panelGrid>
+            <h:commandButton value="Voltar" action="#{contatoMB.voltarLista()}"  class="btn btn-default"/>
+        </h:form>
+    </ui:define>
+</ui:composition>

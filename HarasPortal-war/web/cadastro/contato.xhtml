@@ -8,38 +8,8 @@
 
     <ui:define name="content">
         <h:messages/>
-        <div class="panel-heading">Contato</div><br/>
-        <h:form rendered="#{contatoMB.tela eq 'listando'}">
-            <h:commandButton action="#{contatoMB.novo()}" class="btn btn-primary" value="Novo"/>
-            <span/>
-            <h:dataTable value="#{contatoMB.listaContatos}" var="mensagem" class="table table-hover">
-                <h:column>
-                    <f:facet name="header">
-                        Nome
-                    </f:facet>
-                    #{mensagem.nome}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        E-mail
-                    </f:facet>
-                    #{mensagem.email}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        Assunto
-                    </f:facet>
-                    #{mensagem.assunto}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        Mensagem
-                    </f:facet>
-                    #{mensagem.mensagem}
-                </h:column>
-            </h:dataTable>
-        </h:form>
-        <h:form rendered="#{contatoMB.tela != 'listando'}">
+        <div class="panel-heading">Fale Conosco</div><br/>
+        <h:form rendered="#{contatoMB.tela eq 'inserindo'}">
             <h:panelGrid columns="2">
                 <h:outputText value="Nome"/>
                 <h:inputText value="#{contatoMB.contato.nome}" label="Nome"
@@ -54,7 +24,7 @@
                 <h:inputTextarea value="#{contatoMB.contato.mensagem}" label="Mensagem"
                                  styleClass="form-control" validator="#{contatoMB.messageValidator}"/>
             </h:panelGrid>
-            <h:commandButton value="Enviar" action="#{contatoMB.salvar()}" class="btn btn-primary"/>
+            <h:commandButton value="Enviar" action="#{contatoMB.salvar()}" class="btn btn-primary"/><span/>
             <h:commandButton value="Cancelar" action="/index.xhtml?faces-redirect=true" class="btn btn-primary"/>
         </h:form>
     </ui:define>
