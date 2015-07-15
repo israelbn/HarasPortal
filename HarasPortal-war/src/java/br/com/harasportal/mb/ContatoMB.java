@@ -25,7 +25,6 @@ public class ContatoMB {
     private ContatoDAO contatoDAO;
 
     private Contato contato;
-    private List<Contato> listaContatos;
     private StatusTela tela;
 
     /**
@@ -39,10 +38,6 @@ public class ContatoMB {
        novo();
     }
 
-    public void findAll() {
-        listaContatos = contatoDAO.findByAll();
-    }
-
     public void novo() {
         contato = new Contato();
         tela = StatusTela.inserindo;
@@ -50,20 +45,24 @@ public class ContatoMB {
 
     public void salvar() {
         contatoDAO.persist(contato);
-
-        if (tela == StatusTela.inserindo) {
-            findAll();
-        }
-        tela = StatusTela.listando;
+        tela = StatusTela.inserindo;
     }
 
-    public void remover() {
-        tela = StatusTela.deletando;
-        contato.setLida(true);
-    }
+//    public void remover() {
+//        tela = StatusTela.deletando;
+//        contato.setLida(true);
+//    }
 
     public void voltarLista() {
         tela = StatusTela.listando;
+    }
+    
+    public void detalhar(){
+        tela = StatusTela.detalhar;
+        
+        //altero a mensagem para lida e altera o valor no banco
+        contato.setLida(true);
+        contatoDAO.persist(contato);
     }
 
     //Médoto usado para validar a quantidade de palavras digitadas pelo cliente
@@ -86,11 +85,7 @@ public class ContatoMB {
     }
 
     public List<Contato> getListaContatos() {
-        return listaContatos;
-    }
-
-    public void setListaContatos(List<Contato> listaContatos) {
-        this.listaContatos = listaContatos;
+        return contatoDAO.findByAll();
     }
 
     public StatusTela getTela() {
