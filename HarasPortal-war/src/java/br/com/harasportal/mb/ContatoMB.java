@@ -70,7 +70,7 @@ public class ContatoMB {
     public void messageValidator(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         int countWords = ((String) value).split("[a-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÒÖÚÇÑ]+").length;
         if (countWords > 500) {
-            FacesMessage msg = new FacesMessage("A mensagem deve conter no máximo 500 palavras: "+countWords);
+            FacesMessage msg = new FacesMessage("A mensagem deve conter no máximo 500 palavras, foram encontradas: "+countWords);
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             
             throw new ValidatorException(msg);

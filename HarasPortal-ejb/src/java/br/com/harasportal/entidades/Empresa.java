@@ -5,23 +5,24 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.Transient;
 
 /**
  *
  * @author maicon
  */
 @Entity
-public class Contato implements Serializable {
+public class Empresa implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    private String nome, email, assunto;
-    @Lob
-    private String mensagem;
-    private boolean lida = false;
+    private String nome, email, telefone, usuario, senha;
+    
+    
+    @Transient
+    private String confirmaSenha;
 
     public Long getId() {
         return id;
@@ -47,30 +48,38 @@ public class Contato implements Serializable {
         this.email = email;
     }
 
-    public String getAssunto() {
-        return assunto;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setAssunto(String assunto) {
-        this.assunto = assunto;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
-    public String getMensagem() {
-        return mensagem;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setMensagem(String mensagem) {
-        this.mensagem = mensagem;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
-    public boolean isLida() {
-        return lida;
+    public String getSenha() {
+        return senha;
     }
 
-    public void setLida(boolean lida) {
-        this.lida = lida;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
-    
+
+    public String getConfirmaSenha() {
+        return confirmaSenha;
+    }
+
+    public void setConfirmaSenha(String confirmaSenha) {
+        this.confirmaSenha = confirmaSenha;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -81,10 +90,10 @@ public class Contato implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Contato)) {
+        if (!(object instanceof Empresa)) {
             return false;
         }
-        Contato other = (Contato) object;
+        Empresa other = (Empresa) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -93,7 +102,7 @@ public class Contato implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.harasportal.entidades.Contato[ id=" + id + " ]";
+        return "br.com.harasportal.entidades.Empresa[ id=" + id + " ]";
     }
     
 }
