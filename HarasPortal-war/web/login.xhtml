@@ -9,20 +9,24 @@
     <ui:define name="content">
         <h:messages/>
         <div class="panel-heading">Login</div><br/>
-        <h:form >
+        <h:form rendered="#{autenticadorMB.verificaEmpresaCadastrada() != null}">
             <div align="center">
                 <h:panelGrid columns="2">
                     <h:outputText value="Usuário"/>
                     <h:inputText value="#{autenticadorMB.usuario}" label="Usuário"
                                  styleClass="form-control" required="true"/>
                     <h:outputText value="Senha"/>
-                    <h:inputText value="#{autenticadorMB.senha}" label="Senha"
+                    <h:inputSecret value="#{autenticadorMB.senha}" label="Senha"
                                  styleClass="form-control" required="true"/>
                     <h:outputText value=""/>
                     <h:commandButton value="Login" action="#{autenticadorMB.autentica()}"
                                      class="btn btn-primary"/>
                 </h:panelGrid>
             </div>
+        </h:form>
+        <h:form rendered="#{autenticadorMB.verificaEmpresaCadastrada() == null}">
+            <h:commandLink value="Não existe nenhuma empresa cadastrada no sistema, clique aqui para cadastrar"
+                           action="/cadastro/empresa.xhtml?faces-redirect=true"/>
         </h:form>
     </ui:define>
 

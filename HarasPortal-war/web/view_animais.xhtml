@@ -7,7 +7,74 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <ui:define name="content">
         <h:messages />
-        <div class="panel-heading">Dados dos animais</div><br/>
-        
+        <div class="panel-heading">Dados dos animais</div>
+        <h:form rendered="#{animalMB.tela eq 'listando'}">
+            <h:dataTable value="#{animalMB.listaAnimais}" var="animal" class="table table-hover">
+                <h:column>
+                    <f:facet name="header">
+                        Número do registro
+                    </f:facet>
+                    #{animal.numero_registro}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Nome
+                    </f:facet>
+                    #{animal.nome}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Pelagem
+                    </f:facet>
+                    #{animal.pelagem}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Ativo?
+                    </f:facet>
+                    #{animal.ativo}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Ações
+                    </f:facet>
+                    <h:commandButton value="Ver detalhes" action="#{animalMB.visualizar(animal)}" 
+                                     class="btn btn-success" />
+                </h:column>
+            </h:dataTable>
+        </h:form>
+
+        <h:form rendered="#{animalMB.tela eq 'detalhar'}">
+            <h:panelGrid columns="2" >
+                <h:outputLabel value="Número do registro:"/>
+                <h:inputText value="#{animalMB.animal.numero_registro}" disabled="true" styleClass="form-control"/>
+
+                <h:outputLabel value="Nome do animal:"/>
+                <h:inputText value="#{animalMB.animal.nome}" disabled="true" styleClass="form-control"/>
+
+                <h:outputLabel value="Sexo:"/>
+                <h:inputText value="#{animalMB.animal.sexo}" disabled="true" styleClass="form-control"/>
+
+                <h:outputLabel value="Pelagem:"/>
+                <h:inputText value="#{animalMB.animal.pelagem}" disabled="true" styleClass="form-control"/>
+
+                <h:outputLabel value="Classificação:"/>
+                <h:inputText value="#{animalMB.animal.classificacao}" disabled="true" styleClass="form-control"/>
+
+                <h:outputLabel value="Data de nascimento:"/>
+                <h:inputText value="#{animalMB.animal.data_nascimento.time}" disabled="true" styleClass="form-control">
+                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                </h:inputText>
+
+                <h:outputLabel value="Preço (R$):"/>
+                <h:inputText value="#{animalMB.animal.preco}" disabled="true" styleClass="form-control"/>
+                
+                <h:outputLabel value="Consulta genealogia:"/>
+                <h:commandLink value="Clique aqui" action="#{animalMB.abrirSiteABCCMM()}" target="_blank" />
+            </h:panelGrid>
+            <br/>
+            <h:commandButton value="Voltar" action="#{animalMB.voltarLista()}" class="btn btn-success" />
+        </h:form>
+
     </ui:define>
 </ui:composition>

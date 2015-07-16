@@ -38,6 +38,7 @@ public class ControleAcesso implements Filter {
                 || (req.getRequestURI().endsWith("venda/venda.xhtml"))
                 || (req.getRequestURI().endsWith("cadastro/view_eventos.xhtml"))
                 || (req.getRequestURI().endsWith("cadastro/contato.xhtml"))
+                || (req.getRequestURI().endsWith("cadastro/empresa.xhtml"))
                 || (req.getRequestURI().endsWith("view_animais.xhtml"))
                 || (req.getRequestURI().contains("javax.faces.resource/"))
                 ) {
