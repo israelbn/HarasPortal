@@ -101,7 +101,7 @@
                 </h:selectOneMenu>
             </div>
             <h:commandButton value="Salvar" action="#{animalMB.salvar()}" class="btn btn-primary" rendered="#{animalMB.tela != 'deletando'}"/><span/>
-            <h:commandButton value="Desativar" action="#{animalMB.salvar()}" class="btn btn-primary" rendered="#{animalMB.tela eq 'deletando'}"/><span/>
+            <h:commandButton value="Desativar" action="#{animalMB.salvar()}" class="btn btn-danger" rendered="#{animalMB.tela eq 'deletando'}"/><span/>
             <h:commandButton value="Cancelar" action="#{animalMB.voltarLista()}" class="btn btn-default"/>
         </h:form>
     </ui:define>

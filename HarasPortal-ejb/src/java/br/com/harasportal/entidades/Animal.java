@@ -29,8 +29,16 @@ public class Animal implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL)
     private Filiacao filiacao;
     private Classificacao classificacao;
-    private char ativo;
+    private char ativo, comprado;
     private Double preco;
+
+    public char getComprado() {
+        return comprado;
+    }
+
+    public void setComprado(char comprado) {
+        this.comprado = comprado;
+    }
 
     public Double getPreco() {
         return preco;
