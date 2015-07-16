@@ -44,6 +44,10 @@ public class EventoMB {
         tela = StatusTela.inserindo;
     }
     
+    public void editar(){
+        tela = StatusTela.inserindo;
+    }
+    
     public void salvar(){
         eventoDAO.persist(evento);
         if(tela == StatusTela.inserindo)

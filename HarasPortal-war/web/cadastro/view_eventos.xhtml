@@ -57,26 +57,7 @@
                 <h:outputText value="Descricao"/>
                 #{eventoMB.evento.descricao}<br/>
             </h:panelGrid>
-            <h:commandLink value="Editar" action="#{eventoMB.editar()}" class="btn btn-success" />
             <h:commandButton value="Voltar" action="#{eventoMB.voltarLista()}"  class="btn btn-success"/>
-        </h:form>
-
-        <h:form rendered="#{eventoMB.tela eq 'inserindo'}">
-            <h:panelGrid columns="2">
-                <h:outputText value="Data"/>
-                <h:inputText value="#{eventoMB.evento.data.time}"
-                             styleClass="form-control">
-                    <f:convertDateTime pattern="dd/MM/yyyy" />
-                </h:inputText>
-                <h:outputText value="Local"/>
-                <h:inputText value="#{eventoMB.evento.local}"
-                             styleClass="form-control"/>
-                <h:outputText value="Descricao"/>
-                <h:inputTextarea value="#{eventoMB.evento.descricao}" 
-                                 validator="#{eventoMB.messageValidator}"
-                                 styleClass="form-control"/>
-            </h:panelGrid>
-            <h:commandButton value="Salvar" action="#{eventoMB.salvar()}"  class="btn btn-primary"/>
         </h:form>
     </ui:define>
 </ui:composition>

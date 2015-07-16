@@ -47,6 +47,7 @@ public class EmpresaMB {
     
     public void salvar(){
         empresaDAO.persist(empresa);
+        novo();
     }
     
     public void confirmSenhaValidator(FacesContext fc, UIComponent ui, Object value) throws ValidatorException{

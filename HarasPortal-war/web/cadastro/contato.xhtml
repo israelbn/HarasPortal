@@ -9,7 +9,7 @@
     <ui:define name="content">
         <div class="panel-heading">Fale Conosco</div><br/>
         <h:messages/>
-        <h:dataTable value="#{empresaMB.listaEmpresas}" var="empresa">
+        <h:dataTable value="#{empresaMB.listaEmpresas}" var="empresa" class="table table-hover">
             <h:column>
                 <f:facet name="header">
                     <h:outputText value="Empresa"/>
@@ -35,8 +35,7 @@
                 <h:outputText value="#{empresa.usuario}"/>
             </h:column>
         </h:dataTable>
-        <h3>Ou envie sua mensagem</h3>
-        <hr/>
+        <div class="panel-heading">Envie sua mensagem</div><br/>
         <h:form rendered="#{contatoMB.tela eq 'inserindo'}">
             <h:panelGrid columns="2">
                 <h:outputText value="Nome"/>
