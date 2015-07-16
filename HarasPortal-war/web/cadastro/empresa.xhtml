@@ -7,8 +7,8 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="content">
-        <h:messages id="msg"/>
         <div class="panel-heading">Empresa</div><br/>
+        <h:messages id="msg"/>
         <h:form id="form" rendered="#{empresaMB.tela eq 'inserindo'}">
             <h:panelGrid columns="2">
                 <h:outputText value="Empresa"/>
@@ -31,7 +31,7 @@
                 <h:outputText value="Senha"/>
                 <h:inputText value="#{empresaMB.empresa.senha}" label="Senha"
                              styleClass="form-control">
-                    <f:ajax execute="@this"/>
+                    <f:ajax execute="@this" event="blur"/>
                 </h:inputText>
                 
                 <h:outputText value="Confirma Senha"/>

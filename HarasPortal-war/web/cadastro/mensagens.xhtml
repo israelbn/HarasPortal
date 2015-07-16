@@ -34,13 +34,13 @@
                     <f:facet name="header">
                         Mensagem
                     </f:facet>
-                    #{mensagem.mensagem.substring(0,25).concat("...")}
+                    #{mensagem.mensagem.length() > 25 ? mensagem.mensagem.substring(0,25).concat("...") : mensagem.mensagem}
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        Ações
+                        Ação
                     </f:facet>
-                    <h:commandLink value="Detalhar" action="#{contatoMB.detalhar()}">
+                    <h:commandLink value="Detalhar" action="#{contatoMB.detalhar()}" class="btn btn-success" >
                         <f:setPropertyActionListener target="#{contatoMB.contato}" value="#{mensagem}"/>
                     </h:commandLink>
                 </h:column>

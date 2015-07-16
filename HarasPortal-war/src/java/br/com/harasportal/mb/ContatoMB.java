@@ -45,13 +45,10 @@ public class ContatoMB {
 
     public void salvar() {
         contatoDAO.persist(contato);
-        tela = StatusTela.inserindo;
+        FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "Contato enviado com sucesso!!!"));
+        novo();
     }
-
-//    public void remover() {
-//        tela = StatusTela.deletando;
-//        contato.setLida(true);
-//    }
 
     public void voltarLista() {
         tela = StatusTela.listando;

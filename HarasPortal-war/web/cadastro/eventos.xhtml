@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../template/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <h:messages/>
+        <div class="panel-heading">Eventos</div><br/>
+        <h:form rendered="#{eventoMB.tela eq 'listando'}">
+            <h:commandButton value="Novo Evento" action="#{eventoMB.novo()}" class="btn btn-primary"/>
+            <span/>
+            <h:dataTable value="#{eventoMB.listEventos}" var="evento" class="table table-hover">
+                <h:column>
+                    <f:facet name="header">
+                        Data
+                    </f:facet>
+                    #{evento.data.time}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Local
+                    </f:facet>
+                    #{evento.local}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Descrição
+                    </f:facet>
+                    #{evento.descricao.length() > 25 ? evento.descricao.substring(0,25).concat("...") : evento.descricao}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Ação
+                    </f:facet>
+                    <h:commandLink value="Detalhar" action="#{eventoMB.detalhar()}" class="btn btn-success" >
+                        <f:setPropertyActionListener target="#{eventoMB.evento}" value="#{evento}"/>
+                    </h:commandLink>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+
+        <h:form rendered="#{eventoMB.tela eq 'detalhar'}">
+            <h:panelGrid columns="1">
+                <h:outputText value="Data"/>
+                <h:outputText value="#{eventoMB.evento.data.time}"
+                              styleClass="form-control">
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                </h:outputText>
+                <h:outputText value="Local"/>
+                <h:outputText value="#{eventoMB.evento.local}"
+                              styleClass="form-control"/>
+                <h:outputText value="Descricao"/>
+                #{eventoMB.evento.descricao}
+            </h:panelGrid>
+            <h:commandButton value="Voltar" action="#{eventoMB.voltarLista()}"  class="btn btn-default"/>
+        </h:form>
+
+        <h:form rendered="#{eventoMB.tela eq 'inserindo'}">
+            <h:panelGrid columns="2">
+                <h:outputText value="Data"/>
+                <h:inputText value="#{eventoMB.evento.data.time}"
+                             styleClass="form-control">
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                </h:inputText>
+                <h:outputText value="Local"/>
+                <h:inputText value="#{eventoMB.evento.local}"
+                             styleClass="form-control"/>
+                <h:outputText value="Descricao"/>
+                <h:inputTextarea value="#{eventoMB.evento.descricao}" 
+                                 validator="#{eventoMB.messageValidator}"
+                                 styleClass="form-control"/>
+            </h:panelGrid>
+            <h:commandButton value="Salvar" action="#{eventoMB.salvar()}"  class="btn btn-primary"/>
+        </h:form>
+    </ui:define>
+</ui:composition>

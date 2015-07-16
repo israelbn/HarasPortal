@@ -7,8 +7,36 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="content">
-        <h:messages/>
         <div class="panel-heading">Fale Conosco</div><br/>
+        <h:messages/>
+        <h:dataTable value="#{empresaMB.listaEmpresas}" var="empresa">
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Empresa"/>
+                </f:facet>
+                <h:outputText value="#{empresa.nome}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Email: "/>
+                </f:facet>
+                <h:outputText value="#{empresa.email}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Telefone"/>
+                </f:facet>
+                <h:outputText value="#{empresa.telefone}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Gerente"/>
+                </f:facet>
+                <h:outputText value="#{empresa.usuario}"/>
+            </h:column>
+        </h:dataTable>
+        <h3>Ou envie sua mensagem</h3>
+        <hr/>
         <h:form rendered="#{contatoMB.tela eq 'inserindo'}">
             <h:panelGrid columns="2">
                 <h:outputText value="Nome"/>
@@ -16,7 +44,10 @@
                              styleClass="form-control"/>
                 <h:outputText value="E-mail"/>
                 <h:inputText value="#{contatoMB.contato.email}" label="E-mail"
-                             styleClass="form-control"/>
+                             styleClass="form-control">
+                    <f:validateRegex pattern="([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)" />
+                    <f:ajax render="msg"/>
+                </h:inputText>
                 <h:outputText value="Assunto"/>
                 <h:inputText value="#{contatoMB.contato.assunto}" label="Assutno"
                              styleClass="form-control"/>

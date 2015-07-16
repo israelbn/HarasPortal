@@ -33,7 +33,10 @@
                     <f:facet name="header">
                         Preço (R$)
                     </f:facet>
-                    #{animal.preco}
+                    <h:outputText value="#{animal.preco}">
+                        <f:convertNumber currencySymbol="R$" type="currency"/>
+                    </h:outputText>
+                    
                 </h:column>
                 <h:column>
                     <f:facet name="header">

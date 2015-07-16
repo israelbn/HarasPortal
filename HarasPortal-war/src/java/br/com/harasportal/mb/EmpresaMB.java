@@ -9,7 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
@@ -19,7 +19,7 @@ import javax.faces.validator.ValidatorException;
  * @author maicon
  */
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class EmpresaMB {
     
     @EJB
@@ -51,9 +51,6 @@ public class EmpresaMB {
     
     public void confirmSenhaValidator(FacesContext fc, UIComponent ui, Object value) throws ValidatorException{
         if(!((String) value).equals(empresa.getSenha())){
-            System.out.println("value: "+value);
-            System.out.println("empresa.getsenha: "+empresa.getSenha());
-            System.out.println("empresa.email: "+empresa.getEmail());
             
             FacesMessage fm = new FacesMessage("As senhas não conferem");
             fm.setSeverity(FacesMessage.SEVERITY_ERROR);
@@ -74,7 +71,7 @@ public class EmpresaMB {
     }
 
     public List<Empresa> getListaEmpresas() {
-        return listaEmpresas;
+        return listaEmpresas = empresaDAO.findByAll();
     }
 
     public void setListaEmpresas(List<Empresa> listaEmpresas) {
