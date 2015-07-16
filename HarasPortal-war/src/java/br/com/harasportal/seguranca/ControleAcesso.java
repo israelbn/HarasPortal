@@ -36,7 +36,9 @@ public class ControleAcesso implements Filter {
         if ((session.getAttribute("USUARIOLogado") != null)
                 || (req.getRequestURI().endsWith("login.xhtml"))
                 || (req.getRequestURI().endsWith("venda/venda.xhtml"))
+                || (req.getRequestURI().endsWith("cadastro/view_eventos.xhtml"))
                 || (req.getRequestURI().endsWith("cadastro/contato.xhtml"))
+                || (req.getRequestURI().endsWith("view_animais.xhtml"))
                 || (req.getRequestURI().contains("javax.faces.resource/"))
                 ) {
             if((req.getRequestURI().endsWith("login.xhtml")) && session.getAttribute("USUARIOLogado") != null)

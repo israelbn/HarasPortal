@@ -13,10 +13,14 @@
         <div class="page">
             <div class="header">
                 <h:form>
-                    <h:commandLink value="Área de vendas" action="/venda/venda.xhtml?faces-redirect=true"/>||
-                    <h:commandLink value="Fale conosco" action="/cadastro/contato.xhtml?faces-redirect=true"/>||
-                    <h:commandLink value="Ver Eventos" action="/cadastro/view_eventos.xhtml?faces-redirect=true"/>||
-                    <h:commandLink value="Área restrita" action="/login.xhtml?faces-redirect=true"/>
+                    <ul class="nav nav-pills">
+                        <li><h:commandLink value="Visualizar animais" action="/view_animais.xhtml?faces-redirect=true"/></li>
+                        <li><h:commandLink value="Área de vendas" action="/venda/venda.xhtml?faces-redirect=true"/></li>
+                        <li><h:commandLink value="Ver Eventos" action="/cadastro/view_eventos.xhtml?faces-redirect=true"/></li>
+                        <li><h:commandLink value="Fale conosco" action="/cadastro/contato.xhtml?faces-redirect=true"/></li>
+                        <li><h:commandLink value="Área restrita" action="/login.xhtml?faces-redirect=true"/></li>
+                        <li><h:commandLink value="Sair" action="#{autenticadorMB.registraSaida()}" rendered="#{autenticadorMB.usuarioLogado}"/></li>
+                    </ul>
                 </h:form>
             </div>
             <div class="content">
@@ -27,9 +31,12 @@
                 </div>
             </div>
             <div class="footer" align="center">
-                <i>Desenvolvido por Israel Braga, Maicon Vasconcelos e Luis Mane<br/>
-                Para conclusão do módulo Programação WEB - parte A (Java)<br/>
-                UFAC - Pós-Graduação Lato Sensu em Desenvolvimento de Software e Infraestrutura para Internet</i>
+                <i>Desenvolvido por 
+                    <a href="https://www.linkedin.com/profile/view?id=220869977" target="_blank">Israel Braga,</a>
+                    <a href="https://www.linkedin.com/profile/view?id=95600905" target="_blank">Maicon Vasconcelos</a> e 
+                    <a href="https://www.linkedin.com/profile/view?id=148215813" target="_blank">Luis Livelli</a><br/>
+                    Para conclusão do módulo Programação WEB - parte A (Java)<br/>
+                    UFAC - Pós-Graduação Lato Sensu em Desenvolvimento de Software e Infraestrutura para Internet</i>
             </div>
         </div>
     </h:body>

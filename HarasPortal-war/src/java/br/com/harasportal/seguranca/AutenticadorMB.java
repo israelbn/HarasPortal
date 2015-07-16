@@ -45,6 +45,12 @@ public class AutenticadorMB implements Serializable {
         SessionUtil.remove("USUARIOLogado");
         return "/login?faces-redirect=true";
     }
+    
+    public boolean isUsuarioLogado(){
+        if(SessionUtil.getParam("USUARIOLogado") == null)
+            return false;
+        return true;
+    }
 
     // get e set
     public String getSenha() {

@@ -33,22 +33,19 @@
                     <f:facet name="header">
                         Preço (R$)
                     </f:facet>
-                    <h:outputText value="#{animal.preco}">
+                    <h:outputText value="#{animal.preco}" >
                         <f:convertNumber currencySymbol="R$" type="currency"/>
                     </h:outputText>
                     
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        Comprado?
-                    </f:facet>
-                    #{animal.comprado}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
                         Ação
                     </f:facet>
-                    <h:commandButton value="Gerenciar" action="#{gerenciarVendaMB.gerenciar(animal)}" class="btn btn-success" />
+                    <h:commandButton value="Gerenciar" action="#{gerenciarVendaMB.gerenciar(animal)}" 
+                        class="btn btn-success" rendered="#{animal.comprado != 's'}" />
+                    <h:commandButton value="VENDIDO" class="btn btn-danger" 
+                                     disabled="true" rendered="#{animal.comprado eq 's'}"/>
                 </h:column>
             </h:dataTable>
         </h:form>
