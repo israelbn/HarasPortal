@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/template/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:define name="content">
+        <h:messages showDetail="true" />
+        <div class="panel-heading">Gerenciar vendas dos animais</div><br/>
+        <h:form rendered="#{gerenciarVendaMB.tela eq 'listando'}">
+            <h:dataTable id="tabelaAnimal" value="#{gerenciarVendaMB.listaAnimais}" 
+                         var="animal" class="table table-hover">
+                <h:column>
+                    <f:facet name="header">
+                        Número do registro
+                    </f:facet>
+                    #{animal.numero_registro}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Nome
+                    </f:facet>
+                    #{animal.nome}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Pelagem
+                    </f:facet>
+                    #{animal.pelagem}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Preço (R$)
+                    </f:facet>
+                    #{animal.preco}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Comprado?
+                    </f:facet>
+                    #{animal.comprado}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Ação
+                    </f:facet>
+                    <h:commandButton value="Gerenciar" action="#{gerenciarVendaMB.gerenciar(animal)}" class="btn btn-success" />
+                </h:column>
+            </h:dataTable>
+        </h:form>
+        
+        <h:form rendered="#{gerenciarVendaMB.tela eq 'editando'}">
+            <h:panelGrid columns="2" >
+                <h:outputLabel value="Número do registro:"/>
+                <h:inputText value="#{gerenciarVendaMB.animal.numero_registro}" disabled="true" styleClass="form-control"/>
+
+                <h:outputLabel value="Nome do animal:"/>
+                <h:inputText value="#{gerenciarVendaMB.animal.nome}" disabled="true" styleClass="form-control"/>
+
+                <h:outputLabel value="Sexo:"/>
+                <h:inputText value="#{gerenciarVendaMB.animal.sexo}" disabled="true" styleClass="form-control"/>
+
+                <h:outputLabel value="Pelagem:"/>
+                <h:inputText value="#{gerenciarVendaMB.animal.pelagem}" disabled="true" styleClass="form-control"/>
+
+                <h:outputLabel value="Classificação:"/>
+                <h:inputText value="#{gerenciarVendaMB.animal.classificacao}" disabled="true" styleClass="form-control"/>
+
+                <h:outputLabel value="Data de nascimento:"/>
+                <h:inputText value="#{gerenciarVendaMB.animal.data_nascimento.time}" disabled="true" styleClass="form-control">
+                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                </h:inputText>
+
+                <h:outputLabel value="Preço (R$):"/>
+                <h:inputText value="#{gerenciarVendaMB.animal.preco}" styleClass="form-control"/>
+            </h:panelGrid>
+            <h:commandButton value="Salvar" action="#{gerenciarVendaMB.salvar()}" class="btn btn-success" /><span/>
+            <h:commandButton value="Cancelar" action="#{gerenciarVendaMB.cancelar()}" class="btn btn-default" immediate="true" />
+        </h:form>
+    </ui:define>
+</ui:composition>

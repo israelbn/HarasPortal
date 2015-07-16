@@ -7,8 +7,6 @@ package br.com.harasportal.mb;
 
 import br.com.harasportal.ejb.AnimalDAO;
 import br.com.harasportal.entidades.Animal;
-import br.com.harasportal.entidades.Filiacao;
-import br.com.harasportal.enumeration.Classificacao;
 import br.com.harasportal.enumeration.StatusTela;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -22,75 +20,49 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @ViewScoped
-public class AnimalMB {
+public class GerenciarVendaMB {
     
     @EJB
     private AnimalDAO animalDAO;
-    private Animal animal;
     private List<Animal> listaAnimais;
+    private Animal animal;
     private StatusTela tela;
 
-    /**
-     * Creates a new instance of AnimalMB
-     */
-    public AnimalMB() {
+    public GerenciarVendaMB() {
     }
     
-    /*
-    * Método para iniciar os atributos do MB
-    */
     @PostConstruct
     public void init(){
         tela = StatusTela.listando;
         findByAll();
     }
     
-    public void novo(){
-        animal = new Animal();
-        animal.setAtivo('s');
-        animal.setComprado('n');
-        animal.setFiliacao(new Filiacao());
-        animal.getFiliacao().addAnimal(animal);
-        tela = StatusTela.inserindo;
-    }
-    
     public void findByAll(){
         listaAnimais = animalDAO.findByAll();
+    }
+    
+    public void gerenciar(Animal animal){
+        this.animal = animal;
+        tela = StatusTela.editando;
     }
     
     public void salvar(){
         animalDAO.persist(animal);
         
-        if(tela == StatusTela.inserindo)
-            findByAll();
         tela = StatusTela.listando;
     }
     
-    public void editar(){
-        tela = StatusTela.editando;
-    }
-    
-    public void remover(){
-        tela = StatusTela.deletando;
-        animal.setAtivo('n');
-    }
-    
-    public void voltarLista(){
+    public void cancelar(){
         tela = StatusTela.listando;
     }
-    
-    // Lista as classificações do animal
-    public Classificacao[] getClassificacoes(){
-        return Classificacao.values();
+
+    //get e set
+    public AnimalDAO getAnimalDAO() {
+        return animalDAO;
     }
 
-    // get e set
-    public Animal getAnimal() {
-        return animal;
-    }
-
-    public void setAnimal(Animal animal) {
-        this.animal = animal;
+    public void setAnimalDAO(AnimalDAO animalDAO) {
+        this.animalDAO = animalDAO;
     }
 
     public List<Animal> getListaAnimais() {
@@ -99,6 +71,14 @@ public class AnimalMB {
 
     public void setListaAnimais(List<Animal> listaAnimais) {
         this.listaAnimais = listaAnimais;
+    }
+
+    public Animal getAnimal() {
+        return animal;
+    }
+
+    public void setAnimal(Animal animal) {
+        this.animal = animal;
     }
 
     public StatusTela getTela() {
