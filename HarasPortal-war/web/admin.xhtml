@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/template/template.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <h:messages/>
+        <div class="panel-heading">ÁREA RESTRITA DO PORTAL DO HARAS - ADMINISTRADOR</div><br/>
+        <h:form >
+            <h:panelGrid columns="5">
+                <h:commandLink action="/cadastro/animal.xhtml?faces-redirect=true">
+                    <div align="center">
+                        <h:graphicImage value="/resources/imagens/animal.png" width="20%" height="20%"/><br/>
+                        <h:outputLabel value="Gerenciar animais"/>
+                    </div>
+                </h:commandLink>
+                <h:commandLink action="/cadastro/empresa.xhtml?faces-redirect=true">
+                    <div align="center">
+                        <h:graphicImage value="/resources/imagens/empresa.png" /><br/>
+                        <h:outputLabel value="Gerenciar empresa"/>
+                    </div>
+                </h:commandLink>
+                <h:commandLink action="/cadastro/mensagens.xhtml?faces-redirect=true">
+                    <div align="center">
+                        <h:graphicImage value="/resources/imagens/mensagem.png" width="30%" height="30%"/><br/>
+                        <h:outputLabel value="Visualizar mensagens"/>
+                    </div>
+                </h:commandLink>
+                <h:commandLink action="/venda/gerenciar_venda.xhtml?faces-redirect=true">
+                    <div align="center">
+                        <h:graphicImage value="/resources/imagens/venda.png" width="30%" height="30%"/><br/>
+                        <h:outputLabel value="Gerenciar vendas"/>
+                    </div>
+                </h:commandLink>
+                <h:commandLink action="/cadastro/eventos.xhtml?faces-redirect=true">
+                    <div align="center">
+                        <h:graphicImage value="/resources/imagens/evento.png" width="30%" height="30%"/><br/>
+                        <h:outputLabel value="Gerenciar eventos"/>
+                    </div>
+                </h:commandLink>
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
