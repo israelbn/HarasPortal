@@ -85,7 +85,7 @@ public class AnimalMB {
     }
     
     public String abrirSiteABCCMM(){
-        return "http://desenvolvimento.abccmm.org.br/consultas/consultasgenealogia1.asp?registro="+animal.getNumero_registro()+"?faces-redirect=true";
+        return "http://desenvolvimento.abccmm.org.br/consultas/consultasgenealogia1.asp?registro="+animal.getNumero_registro();
     }
     
     // Lista as classificações do animal

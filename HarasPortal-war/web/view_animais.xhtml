@@ -70,7 +70,7 @@
                 <h:inputText value="#{animalMB.animal.preco}" disabled="true" styleClass="form-control"/>
                 
                 <h:outputLabel value="Consulta genealogia:"/>
-                <h:commandLink value="Clique aqui" action="#{animalMB.abrirSiteABCCMM()}" target="_blank" />
+                <h:outputLink value="#{animalMB.abrirSiteABCCMM()}" target="_blank">Clique aqui</h:outputLink>
             </h:panelGrid>
             <br/>
             <h:commandButton value="Voltar" action="#{animalMB.voltarLista()}" class="btn btn-success" />
