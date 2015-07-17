@@ -12,7 +12,7 @@ import javax.persistence.Lob;
  * @author maicon
  */
 @Entity
-public class Contato implements Serializable {
+public class Contato implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -95,5 +95,5 @@ public class Contato implements Serializable {
     public String toString() {
         return "br.com.harasportal.entidades.Contato[ id=" + id + " ]";
     }
-    
+
 }

@@ -23,6 +23,7 @@ public class ContatoDAO{
     public List<Contato> findByAll(){
         CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
         cq.select(cq.from(Contato.class));
+        cq.orderBy(em.getCriteriaBuilder().asc(cq.from(Contato.class).get("lida")));
         return em.createQuery(cq).getResultList();
     }
     

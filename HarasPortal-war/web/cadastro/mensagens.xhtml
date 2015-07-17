@@ -11,7 +11,7 @@
         <div class="panel-heading">Mensagens</div><br/>
         <h:form rendered="#{contatoMB.tela != 'detalhar'}">
             <span/>
-            <h:dataTable value="#{contatoMB.listaContatos}" var="mensagem" class="table table-hover">
+            <h:dataTable value="#{contatoMB.listaContatos}" var="mensagem" rowClasses="#{contatoMB.rowClasses}" class="table">
                 <h:column>
                     <f:facet name="header">
                         Nome
@@ -40,7 +40,7 @@
                     <f:facet name="header">
                         Ação
                     </f:facet>
-                    <h:commandLink value="Detalhar" action="#{contatoMB.detalhar()}" class="btn btn-success" >
+                    <h:commandLink value="#{mensagem.lida ? 'Lida' : 'Não lida'}" action="#{contatoMB.detalhar()}" class="#{mensagem.lida ? 'btn btn-default' : 'btn btn-success'}" >
                         <f:setPropertyActionListener target="#{contatoMB.contato}" value="#{mensagem}"/>
                     </h:commandLink>
                 </h:column>

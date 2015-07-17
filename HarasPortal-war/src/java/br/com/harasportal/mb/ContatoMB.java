@@ -3,6 +3,9 @@ package br.com.harasportal.mb;
 import br.com.harasportal.ejb.ContatoDAO;
 import br.com.harasportal.entidades.Contato;
 import br.com.harasportal.enumeration.StatusTela;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -35,7 +38,7 @@ public class ContatoMB {
 
     @PostConstruct
     public void init() {
-       novo();
+        novo();
     }
 
     public void novo() {
@@ -46,17 +49,17 @@ public class ContatoMB {
     public void salvar() {
         contatoDAO.persist(contato);
         FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "Contato enviado com sucesso!!!"));
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "Contato enviado com sucesso!!!"));
         novo();
     }
 
     public void voltarLista() {
         tela = StatusTela.listando;
     }
-    
-    public void detalhar(){
+
+    public void detalhar() {
         tela = StatusTela.detalhar;
-        
+
         //altero a mensagem para lida e altera o valor no banco
         contato.setLida(true);
         contatoDAO.persist(contato);
@@ -66,11 +69,30 @@ public class ContatoMB {
     public void messageValidator(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         int countWords = ((String) value).split("[a-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÒÖÚÇÑ]+").length;
         if (countWords > 500) {
-            FacesMessage msg = new FacesMessage("A mensagem deve conter no máximo 500 palavras, foram encontradas: "+countWords);
+            FacesMessage msg = new FacesMessage("A mensagem deve conter no máximo 500 palavras, foram encontradas: " + countWords);
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-            
+
             throw new ValidatorException(msg);
         }
+    }
+
+    /**
+     * Método desenvolvido para criar um css com cada linha da mensagem
+     * @return retorna uma lista com o estilo de cada linha da lista para o 
+     * datatable
+     */
+    public String getRowClasses() {
+        StringBuilder rowClasses = new StringBuilder();
+        for (Contato c : getListaContatos()) {
+            if (rowClasses.length() > 0) {
+                rowClasses.append(",");
+            }
+            if(c.isLida())
+                rowClasses.append("active");
+            else
+            rowClasses.append("success");
+        }
+        return rowClasses.toString();
     }
 
     public Contato getContato() {
