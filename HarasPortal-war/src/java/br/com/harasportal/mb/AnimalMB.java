@@ -79,6 +79,15 @@ public class AnimalMB {
         tela = StatusTela.listando;
     }
     
+    public void visualizar(Animal animal){
+        this.animal = animal;
+        tela = StatusTela.detalhar;
+    }
+    
+    public String abrirSiteABCCMM(){
+        return "http://desenvolvimento.abccmm.org.br/consultas/consultasgenealogia1.asp?registro="+animal.getNumero_registro();
+    }
+    
     // Lista as classificações do animal
     public Classificacao[] getClassificacoes(){
         return Classificacao.values();

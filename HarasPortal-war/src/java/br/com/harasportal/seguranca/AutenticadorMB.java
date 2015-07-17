@@ -5,8 +5,13 @@
  */
 package br.com.harasportal.seguranca;
 
+import br.com.harasportal.ejb.EmpresaDAO;
+import br.com.harasportal.entidades.Empresa;
 import br.com.harasportal.util.SessionUtil;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -17,39 +22,52 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class AutenticadorMB implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
+    @EJB
+    private EmpresaDAO empresaDAO;
     private String usuario;
     private String senha;
 
     public String autentica() {
-        System.out.println("autentica..");
-        if (usuario.equals("admin") && senha.equals("admin")) {
-            System.out.println("Confirmou  usuario e senha ...");
+        // busca a empresa que está no banco de dados
+        List<Empresa> lista = verificaEmpresaCadastrada();
+        if (lista != null) {
+            Empresa empresa = lista.get(0);
+            if (usuario.equals(empresa.getUsuario()) && senha.equals(empresa.getSenha())) {
+                // adiciona usuário na session
+                Object b = new Object();
+                SessionUtil.setParam("USUARIOLogado", b);
 
-            // adiciona usuário na session
-            Object b = new Object();
-            SessionUtil.setParam("USUARIOLogado", b);
-
-            return "/admin.xhtml?faces-redirect=true";
-        } else {
-            return null;
+                return "/admin.xhtml?faces-redirect=true";
+            }
         }
+        return null;
     }
 
     /**
      * Método que efetua o logout
+     * @return 
      */
     public String registraSaida() {
         //remove usuário da session
         SessionUtil.remove("USUARIOLogado");
         return "/login?faces-redirect=true";
     }
+
+    public boolean isUsuarioLogado() {
+        return SessionUtil.getParam("USUARIOLogado") != null;
+    }
     
-    public boolean isUsuarioLogado(){
-        if(SessionUtil.getParam("USUARIOLogado") == null)
-            return false;
-        return true;
+    public List<Empresa> verificaEmpresaCadastrada(){
+        Empresa empresa = new Empresa();
+        List<Empresa> lista = new ArrayList<>();
+        lista = empresaDAO.findByAll();
+
+        if (!lista.isEmpty())
+            return lista;
+        return null;
     }
 
     // get e set

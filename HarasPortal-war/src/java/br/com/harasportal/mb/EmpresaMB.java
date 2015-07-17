@@ -35,7 +35,11 @@ public class EmpresaMB {
     
     @PostConstruct
     public void init(){
-        novo();
+        listaEmpresas = empresaDAO.findByAll();
+        if(listaEmpresas == null || listaEmpresas.isEmpty())
+            novo();
+        else
+            empresa = listaEmpresas.get(0);
     }
     
     public void login(){}
@@ -45,9 +49,10 @@ public class EmpresaMB {
         tela = StatusTela.inserindo;
     }
     
-    public void salvar(){
+    public String salvar(){
         empresaDAO.persist(empresa);
         novo();
+        return "/admin.xhtml?faces-redirect=true";
     }
     
     public void confirmSenhaValidator(FacesContext fc, UIComponent ui, Object value) throws ValidatorException{

@@ -9,7 +9,7 @@
     <ui:define name="content">
         <div class="panel-heading">Empresa</div><br/>
         <h:messages id="msg"/>
-        <h:form id="form" rendered="#{empresaMB.tela eq 'inserindo'}">
+        <h:form id="form" rendered="#{autenticadorMB.verificaEmpresaCadastrada() == null || autenticadorMB.usuarioLogado}">
             <h:panelGrid columns="2">
                 <h:outputText value="Empresa"/>
                 <h:inputText value="#{empresaMB.empresa.nome}" label="Empresa"
@@ -27,27 +27,29 @@
                 <h:outputText value="Usuário"/>
                 <h:inputText value="#{empresaMB.empresa.usuario}" label="Usuário"
                              styleClass="form-control"/>
-                
+
                 <h:outputText value="Senha"/>
-                <h:inputText value="#{empresaMB.empresa.senha}" label="Senha"
+                <h:inputSecret value="#{empresaMB.empresa.senha}" label="Senha"
                              styleClass="form-control">
                     <f:ajax execute="@this" event="blur"/>
-                </h:inputText>
-                
+                </h:inputSecret>
+
                 <h:outputText value="Confirma Senha"/>
-                <h:inputText value="#{empresaMB.empresa.confirmaSenha}" 
+                <h:inputSecret value="#{empresaMB.empresa.confirmaSenha}" 
                              label="Confirma Senha" 
                              validator="#{empresaMB.confirmSenhaValidator}"
                              styleClass="form-control">
-                    
+
                     <f:ajax execute="@this" event="blur" render="msg"/>
-                </h:inputText>
-                
+                </h:inputSecret>
+
                 <h:outputText value=""/>
-                <h:commandButton value="Cadastrar" action="#{empresaMB.salvar()}"
-                                 class="btn btn-primary">
-                </h:commandButton>
             </h:panelGrid>
+            <br/>
+            <h:commandButton value="Cadastrar" action="#{empresaMB.salvar()}"
+                             class="btn btn-primary"/>
+            <span/>
+            <h:commandButton value="Cancelar" action="/admin.xhtml" class="btn btn-default"/>
         </h:form>
     </ui:define>
 </ui:composition>

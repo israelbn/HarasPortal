@@ -40,13 +40,16 @@
                     <f:facet name="header">
                         Ações
                     </f:facet>
-                    <h:commandLink value="Editar" action="#{animalMB.editar()}">
+                    <h:commandLink value="Editar" action="#{animalMB.editar()}"
+                                   rendered="#{animal.comprado != 's'}">
                         <f:setPropertyActionListener target="#{animalMB.animal}" value="#{animal}"/>
                     </h:commandLink>
-                    ||
-                    <h:commandLink value="Remover" action="#{animalMB.remover()}" rendered="#{animal.ativo eq 's'}">
+                    <h:commandLink value=" || Remover" action="#{animalMB.remover()}" 
+                                   rendered="#{animal.ativo eq 's' and animal.comprado != 's'}">
                         <f:setPropertyActionListener target="#{animalMB.animal}" value="#{animal}"/>
                     </h:commandLink>
+                    <h:commandButton value="VENDIDO" class="btn btn-danger" 
+                                     disabled="true" rendered="#{animal.comprado eq 's'}"/>
                 </h:column>
             </h:dataTable>
         </h:form>
