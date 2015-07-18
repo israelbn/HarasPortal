@@ -6,7 +6,7 @@
 package br.com.harasportal.entidades;
 
 import java.io.Serializable;
-import java.util.Calendar;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,7 +27,7 @@ public class Evento implements Serializable {
     private Long id;
     
     @Temporal(TemporalType.DATE)
-    private Calendar data = Calendar.getInstance();
+    private Date data = new Date();
     private String local;
     @Lob
     private String descricao;
@@ -40,11 +40,11 @@ public class Evento implements Serializable {
         this.id = id;
     }
 
-    public Calendar getData() {
+    public Date getData() {
         return data;
     }
 
-    public void setData(Calendar data) {
+    public void setData(Date data) {
         this.data = data;
     }
 

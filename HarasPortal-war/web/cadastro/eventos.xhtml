@@ -17,7 +17,7 @@
                     <f:facet name="header">
                         Data
                     </f:facet>
-                    <h:outputLabel value="#{evento.data.time}">
+                    <h:outputLabel value="#{evento.data}">
                         <f:convertDateTime pattern="dd/MM/YYYY"/>
                     </h:outputLabel>
                 </h:column>
@@ -47,7 +47,7 @@
         <h:form rendered="#{eventoMB.tela eq 'detalhar'}">
             <h:panelGrid columns="2">
                 <h:outputLabel value="Data"/>
-                <h:outputText value="#{eventoMB.evento.data.time}"
+                <h:outputText value="#{eventoMB.evento.data}"
                               styleClass="form-control">
                     <f:convertDateTime pattern="dd/MM/yyyy" />
                 </h:outputText>
@@ -68,7 +68,7 @@
         <h:form rendered="#{eventoMB.tela eq 'inserindo'}">
             <h:panelGrid columns="2">
                 <h:outputText value="Data"/>
-                <h:inputText value="#{eventoMB.evento.data.time}"
+                <h:inputText value="#{eventoMB.evento.data}"
                              styleClass="form-control">
                     <f:convertDateTime pattern="dd/MM/yyyy" />
                 </h:inputText>
