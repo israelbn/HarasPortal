@@ -25,6 +25,7 @@ public class EventoDAO {
     public List<Evento> findByAll(){
         CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
         cq.select(cq.from(Evento.class));
+        cq.orderBy(em.getCriteriaBuilder().desc(cq.from(Evento.class).get("data")));
         return em.createQuery(cq).getResultList();
     }
     

@@ -3,6 +3,7 @@ package br.com.harasportal.mb;
 import br.com.harasportal.ejb.EventoDAO;
 import br.com.harasportal.entidades.Evento;
 import br.com.harasportal.enumeration.StatusTela;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -76,6 +77,22 @@ public class EventoMB {
             
             throw new ValidatorException(msg);
         }
+    }
+    
+    public String getRowClasses(){
+        StringBuilder rowClasses = new StringBuilder();
+        Date d = new Date();
+        
+        for(Evento e : listEventos){
+            if(rowClasses.length() > 0) rowClasses.append(",");
+            if(e.getData().before(d)) rowClasses.append("active");
+            rowClasses.append(" ");
+            System.out.println("e.getData: "+e.getData());
+            System.out.println("HOJE: "+d);
+            System.out.println("e.getData: "+e.getData().before(d));
+        }
+        System.out.println(rowClasses.toString());
+        return rowClasses.toString();
     }
 
     public Evento getEvento() {

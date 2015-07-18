@@ -12,7 +12,7 @@
         <h:form rendered="#{eventoMB.tela eq 'listando'}">
             <h:commandButton value="Novo Evento" action="#{eventoMB.novo()}" class="btn btn-primary"/>
             <span/>
-            <h:dataTable value="#{eventoMB.listEventos}" var="evento" class="table table-hover">
+            <h:dataTable value="#{eventoMB.listEventos}" var="evento" class="table" rowClasses="#{eventoMB.rowClasses}">
                 <h:column>
                     <f:facet name="header">
                         Data

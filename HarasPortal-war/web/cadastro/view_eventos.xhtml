@@ -10,7 +10,7 @@
         <h:messages/>
         <div class="panel-heading">Eventos</div><br/>
         <h:form rendered="#{eventoMB.tela eq 'listando'}">
-            <h:dataTable value="#{eventoMB.listEventos}" var="evento" class="table table-hover">
+            <h:dataTable value="#{eventoMB.listEventos}" var="evento" class="table" rowClasses="#{eventoMB.rowClasses}">
                 <h:column>
                     <f:facet name="header">
                         Data
