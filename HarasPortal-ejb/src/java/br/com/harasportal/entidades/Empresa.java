@@ -18,7 +18,7 @@ public class Empresa implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    private String nome, email, telefone, usuario, senha;
+    private String nome, email, telefone,nomeUsuario, usuario, senha;
     
     
     @Transient
@@ -56,6 +56,14 @@ public class Empresa implements Serializable {
         this.telefone = telefone;
     }
 
+    public String getNomeUsuario() {
+        return nomeUsuario;
+    }
+
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
+    }
+    
     public String getUsuario() {
         return usuario;
     }

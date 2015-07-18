@@ -59,7 +59,7 @@
                 <h:inputText value="#{gerenciarVendaMB.animal.nome}" disabled="true" styleClass="form-control"/>
 
                 <h:outputLabel value="Sexo:"/>
-                <h:inputText value="#{gerenciarVendaMB.animal.sexo}" disabled="true" styleClass="form-control"/>
+                <h:inputText value="#{gerenciarVendaMB.animal.sexo eq 'm'? 'Macho' : 'Fêmea'}" disabled="true" styleClass="form-control"/>
 
                 <h:outputLabel value="Pelagem:"/>
                 <h:inputText value="#{gerenciarVendaMB.animal.pelagem}" disabled="true" styleClass="form-control"/>

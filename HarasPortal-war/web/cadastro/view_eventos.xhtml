@@ -29,7 +29,7 @@
                     <f:facet name="header">
                         Descrição
                     </f:facet>
-                    #{evento.descricao.length() > 100 ? evento.descricao.substring(0,100).concat("...") : evento.descricao}
+                    <p>#{evento.descricao.length() > 100 ? evento.descricao.substring(0,100).concat("...") : evento.descricao}</p>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
@@ -43,17 +43,21 @@
         </h:form>
 
         <h:form rendered="#{eventoMB.tela eq 'detalhar'}">
-            <h:panelGrid columns="1">
-                <h:outputText value="Data"/>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Data"/>
                 <h:outputText value="#{eventoMB.evento.data.time}"
                               styleClass="form-control">
                     <f:convertDateTime pattern="dd/MM/yyyy" />
                 </h:outputText>
-                <h:outputText value="Local"/>
+                <h:outputLabel value="Local"/>
                 <h:outputText value="#{eventoMB.evento.local}"
                               styleClass="form-control"/>
-                <h:outputText value="Descricao"/>
-                #{eventoMB.evento.descricao}<br/>
+                <h:panelGroup>
+                    <h:panelGrid columns="1">
+                        <h:outputLabel value="Descricao"/>
+                        <p>#{eventoMB.evento.descricao}</p>
+                    </h:panelGrid>
+                </h:panelGroup>
             </h:panelGrid>
             <h:commandButton value="Voltar" action="#{eventoMB.voltarLista()}"  class="btn btn-success"/>
         </h:form>

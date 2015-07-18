@@ -32,7 +32,7 @@
                     <f:facet name="header">
                         Ativo?
                     </f:facet>
-                    #{animal.ativo}
+                    #{animal.ativo eq 's' ? 'SIM' : 'NÃO'}
                 </h:column>
                 <h:column>
                     <f:facet name="header">
@@ -47,28 +47,30 @@
         <h:form rendered="#{animalMB.tela eq 'detalhar'}">
             <h:panelGrid columns="2" >
                 <h:outputLabel value="Número do registro:"/>
-                <h:inputText value="#{animalMB.animal.numero_registro}" disabled="true" styleClass="form-control"/>
+                <h:outputText value="#{animalMB.animal.numero_registro}" styleClass="form-control"/>
 
                 <h:outputLabel value="Nome do animal:"/>
-                <h:inputText value="#{animalMB.animal.nome}" disabled="true" styleClass="form-control"/>
+                <h:outputText value="#{animalMB.animal.nome}" styleClass="form-control"/>
 
                 <h:outputLabel value="Sexo:"/>
-                <h:inputText value="#{animalMB.animal.sexo}" disabled="true" styleClass="form-control"/>
+                <h:outputText value="#{animalMB.animal.sexo eq 'm' ? 'Macho' : 'Fêmea'}" styleClass="form-control"/>
 
                 <h:outputLabel value="Pelagem:"/>
-                <h:inputText value="#{animalMB.animal.pelagem}" disabled="true" styleClass="form-control"/>
+                <h:outputText value="#{animalMB.animal.pelagem}" styleClass="form-control"/>
 
                 <h:outputLabel value="Classificação:"/>
-                <h:inputText value="#{animalMB.animal.classificacao}" disabled="true" styleClass="form-control"/>
+                <h:outputText value="#{animalMB.animal.classificacao}" styleClass="form-control"/>
 
                 <h:outputLabel value="Data de nascimento:"/>
-                <h:inputText value="#{animalMB.animal.data_nascimento.time}" disabled="true" styleClass="form-control">
+                <h:outputText value="#{animalMB.animal.data_nascimento.time}" styleClass="form-control">
                     <f:convertDateTime pattern="dd/MM/yyyy"/>
-                </h:inputText>
+                </h:outputText>
 
                 <h:outputLabel value="Preço (R$):"/>
-                <h:inputText value="#{animalMB.animal.preco}" disabled="true" styleClass="form-control"/>
-                
+                <h:outputText value="#{animalMB.animal.preco}" styleClass="form-control">
+                    <f:convertNumber currencySymbol="R$" type="currency"/>
+                </h:outputText>
+
                 <h:outputLabel value="Consulta genealogia:"/>
                 <h:outputLink value="#{animalMB.abrirSiteABCCMM()}" target="_blank">Clique aqui</h:outputLink>
             </h:panelGrid>

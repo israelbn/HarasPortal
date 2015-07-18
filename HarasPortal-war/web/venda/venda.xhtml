@@ -55,7 +55,7 @@
                 <h:inputText value="#{vendaMB.animal.nome}" disabled="true" styleClass="form-control"/>
 
                 <h:outputLabel value="Sexo:"/>
-                <h:inputText value="#{vendaMB.animal.sexo}" disabled="true" styleClass="form-control"/>
+                <h:inputText value="#{vendaMB.animal.sexo eq 'm'? 'Macho' : 'Fêmea'}" disabled="true" styleClass="form-control"/>
 
                 <h:outputLabel value="Pelagem:"/>
                 <h:inputText value="#{vendaMB.animal.pelagem}" disabled="true" styleClass="form-control"/>
@@ -69,7 +69,9 @@
                 </h:inputText>
 
                 <h:outputLabel value="Preço (R$):"/>
-                <h:outputLabel value="#{vendaMB.animal.preco}" />
+                <h:outputLabel value="#{vendaMB.animal.preco}" >
+                    <f:convertNumber currencySymbol="R$" type="currency"/>
+                </h:outputLabel>
             </h:panelGrid>
             <h:commandButton value="Confirmar compra" action="#{vendaMB.confirmarCompra()}" class="btn btn-success" />
         </h:form>

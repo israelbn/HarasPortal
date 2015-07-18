@@ -49,19 +49,20 @@
         
         <h:form rendered="#{contatoMB.tela eq 'detalhar'}">
             <h:panelGrid columns="1">
-                <h:outputText value="Nome"/>
-                <h:outputText value="#{contatoMB.contato.nome}"
-                             styleClass="form-control"/>
-                <h:outputText value="E-mail"/>
-                <h:outputText value="#{contatoMB.contato.email}"
-                             styleClass="form-control"/>
-                <h:outputText value="Assunto"/>
-                <h:outputText value="#{contatoMB.contato.assunto}"
-                             styleClass="form-control"/>
-                <h:outputText value="Mensagem"/>
-                #{contatoMB.contato.mensagem}
+                <h:panelGroup>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Nome:"/>
+                        <h:outputText value="#{contatoMB.contato.nome}" styleClass="form-control"/>
+                        <h:outputLabel value="E-mail:"/>
+                        <h:outputText value="#{contatoMB.contato.email}" styleClass="form-control"/>
+                        <h:outputLabel value="Assunto:"/>
+                        <h:outputText value="#{contatoMB.contato.assunto}" styleClass="form-control"/>
+                    </h:panelGrid>
+                </h:panelGroup>
+                <h:outputLabel value="Mensagem"/>
+                <p>#{contatoMB.contato.mensagem}</p>
             </h:panelGrid>
-            <h:commandButton value="Voltar" action="#{contatoMB.voltarLista()}"  class="btn btn-default"/>
+            <h:commandButton value="Voltar" action="#{contatoMB.voltarLista()}"  class="btn btn-success"/>
         </h:form>
     </ui:define>
 </ui:composition>
